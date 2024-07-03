@@ -23,7 +23,6 @@ router.get("/studentData/:code", (req, res) => {
 });
 
 router.get("/student/:studentCode/deck/:deckId", (req, res) => {
-  console.log(req.params);
   pool.query(
     reqs.cardsToStudy(req.params.studentCode, req.params.deckId),
     (err, result) => {
@@ -32,6 +31,26 @@ router.get("/student/:studentCode/deck/:deckId", (req, res) => {
         res.send({ deck: Number(req.params.deckId), cards: result.recordset });
     }
   );
+});
+
+router.post("/cards/newRating", (req, res) => {
+  var flag = false;
+  req.body.cards.map((card) => {
+    pool.query(reqs.deactiveCardToStudy(card.schId), (err) => {
+      if (err) flag = true;
+      else {
+        pool.query(
+          reqs.insertNewCardHistory(req.body.studentId, card.id, card.rating),
+          (err) => {
+            if (err) flag = true;
+          }
+        );
+      }
+    });
+  });
+
+  if (flag) res.sendStatus(500);
+  else res.sendStatus(200);
 });
 
 module.exports = router;
