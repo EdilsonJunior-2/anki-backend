@@ -1,6 +1,6 @@
 const express = require("express");
 const pool = require("./sql/connection");
-const reqs = require("./sql/reqs");
+const reqs = require("./sql/spacedRepetition");
 const router = express.Router();
 
 router.get("/", async (req, res) => {});
