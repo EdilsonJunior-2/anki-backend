@@ -40,7 +40,13 @@ router.post("/cards/newRating", (req, res) => {
       if (err) flag = true;
       else {
         pool.query(
-          reqs.insertNewCardHistory(req.body.studentId, card.id, card.rating),
+          reqs.insertNewCardHistory(
+            req.body.studentId,
+            card.id,
+            card.rating,
+            card.meter,
+            card.interval
+          ),
           (err) => {
             if (err) flag = true;
           }
