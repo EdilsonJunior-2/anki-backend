@@ -9,7 +9,7 @@ const nextDate = (interval, meter, rating) =>
 
 const allDecks = () => "SELECT * FROM Deck";
 const studentData = (studentCode) =>
-  `SELECT * FROM students s WHERE s.code = '${studentCode}'`;
+  `SELECT * FROM student s WHERE s.code = '${studentCode}'`;
 const cardsToStudy = (studentCode, deckId) =>
   `SELECT TOP (12) sch.ID AS schId, c.ID AS cardId, sch.Difficulty_rating AS rating, d.category as category, sch.meter as meter, sch.interval as interval from student_card_history sch JOIN card c ON sch.Card_id = c.ID JOIN Students s ON sch.Student_code = s.ID JOIN deck d ON c.Deck_id = d.ID WHERE s.code = '${studentCode}' AND c.Deck_id = ${deckId} AND sch.active = 1 AND sch.next_study_date < GETDATE() ORDER BY sch.Next_study_date`;
 const deactiveCardToStudy = (cardHistoryId) =>
