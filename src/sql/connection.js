@@ -1,18 +1,15 @@
 const sql = require("mssql");
 
 var config = {
-  user: "tcc-database",
-  password: "paodequeijo",
-  server: "DESKTOP-BTTSM8K",
-  database: "DBTest",
+  server: "tcc-dbase.ct2w26gwe3t6.us-east-2.rds.amazonaws.com",
+  database: "TCC_DB",
+  user: "admin",
+  password: "paodebatata1",
+  port: 1433,
   options: {
     encrypt: false,
-    trustServerCertificate: true,
-    trustedConnection: false,
-    enableArithAbort: true,
-    instancename: "SQLEXPRESS",
+    trustServerCertificate: false,
   },
-  port: 1433,
 };
 
 const pool = sql
