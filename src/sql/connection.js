@@ -1,11 +1,11 @@
 const sql = require("mssql");
 
 var config = {
-  server: "tcc-dbase.ct2w26gwe3t6.us-east-2.rds.amazonaws.com",
-  database: "TCC_DB",
-  user: "admin",
-  password: "paodebatata1",
-  port: 1433,
+  server: process.env.DATABASE_SERVER || "DESKTOP-BTTSM8K",
+  database: process.env.DATABASE_NAME || "DBTest",
+  user: process.env.DATABASE_USER || "tcc_database",
+  password: process.env.DATABASE_PW || "paodequeijo",
+  port: process.env.DATABASE_PORT || 1433,
   options: {
     encrypt: false,
     trustServerCertificate: false,
