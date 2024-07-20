@@ -5,7 +5,7 @@ var config = {
   database: process.env.DATABASE_NAME || "DBTest",
   user: process.env.DATABASE_USER || "tcc_database",
   password: process.env.DATABASE_PW || "paodequeijo",
-  port: process.env.DATABASE_PORT || 1433,
+  port: Number(process.env.DATABASE_PORT) || 1433,
   options: {
     encrypt: false,
     trustServerCertificate: false,
