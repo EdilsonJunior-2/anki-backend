@@ -2,6 +2,9 @@ const nextReviewCalc = (previousInterval, meter, rating) =>
   Math.round(100 * (previousInterval * (1 + Math.exp(-rating + meter)) - 1)) /
   100;
 
+const login = (studentCode) =>
+  `SELECT * FROM student s WHERE s.code = '${studentCode}'`;
+
 const nextDate = (interval, meter, rating) =>
   `DATEADD(MILLISECOND, ${
     nextReviewCalc(interval, meter, rating) * 24 * 60 * 60 * 1000
@@ -11,7 +14,7 @@ const allDecks = () => "SELECT * FROM Deck";
 const studentData = (studentCode) =>
   `SELECT * FROM student s WHERE s.code = '${studentCode}'`;
 const cardsToStudy = (studentCode, deckId) =>
-  `SELECT TOP (12) sch.ID AS schId, c.ID AS cardId, sch.Difficulty_rating AS rating, d.category as category, sch.meter as meter, sch.interval as interval from student_card_history sch JOIN card c ON sch.Card_id = c.ID JOIN Students s ON sch.Student_code = s.ID JOIN deck d ON c.Deck_id = d.ID WHERE s.code = '${studentCode}' AND c.Deck_id = ${deckId} AND sch.active = 1 AND sch.next_study_date < GETDATE() ORDER BY sch.Next_study_date`;
+  `SELECT TOP (12) sch.ID AS schId, c.ID AS cardId, sch.Difficulty_rating AS rating, d.category as category, sch.meter as meter, sch.interval as interval from student_card_history sch JOIN card c ON sch.Card_id = c.ID JOIN student s ON sch.Student_code = s.code JOIN deck d ON c.Deck_id = d.ID WHERE s.code = '${studentCode}' AND c.Deck_id = ${deckId} AND sch.active = 1 AND sch.next_study_date < GETDATE() ORDER BY sch.Next_study_date`;
 const deactiveCardToStudy = (cardHistoryId) =>
   `UPDATE student_card_history SET active = 0 WHERE student_card_history.ID = ${cardHistoryId}`;
 const insertNewCardHistory = (
@@ -133,6 +136,7 @@ const decksInfo = [
 ];
 
 const reqs = {
+  login,
   allDecks,
   studentData,
   cardsToStudy,

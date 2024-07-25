@@ -3,12 +3,15 @@ const sql = require("mssql");
 var config = {
   server: process.env.DATABASE_SERVER || "DESKTOP-BTTSM8K",
   database: process.env.DATABASE_NAME || "DBTest",
-  user: process.env.DATABASE_USER || "tcc_database",
+  user: process.env.DATABASE_USER || "tcc-database",
   password: process.env.DATABASE_PW || "paodequeijo",
-  port: Number(process.env.DATABASE_PORT) || 1433,
+  port: process.env.DATABASE_PORT ? Number(process.env.DATABASE_PORT) : 1433,
   options: {
     encrypt: false,
-    trustServerCertificate: false,
+    trustServerCertificate: true,
+    trustedConnection: false,
+    enableArithAbort: true,
+    instancename: "SQLEXPRESS",
   },
 };
 
