@@ -6,6 +6,10 @@ const jwt = require("jsonwebtoken");
 
 router.get("/", async (req, res) => {});
 
+router.get("/keepConnection", async (_, res) => {
+  res.status(200).send("Conenction open");
+});
+
 router.post("/login", (req, res) => {
   pool.query(reqs.login(req.body.code), (err, result) => {
     if (err || result.recordset.length === 0)
