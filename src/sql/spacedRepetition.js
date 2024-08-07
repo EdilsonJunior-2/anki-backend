@@ -1,13 +1,17 @@
-const nextReviewCalc = (previousInterval, meter, rating) =>
-  Math.round(100 * (previousInterval * (1 + Math.exp(-rating + meter)) - 1)) /
-  100;
+const nextReviewCalc = (previousInterval, meter, rating, repetitions) =>
+  Math.round(
+    100 *
+      ((1 + previousInterval) *
+        (1 + Math.exp(-(rating * repetitions) + meter)) -
+        1)
+  ) / 100;
 
 const login = (studentCode) =>
   `SELECT * FROM student s WHERE s.code = '${studentCode}'`;
 
-const nextDate = (interval, meter, rating) =>
+const nextDate = (interval, meter, rating, repetitions) =>
   `DATEADD(MILLISECOND, ${
-    nextReviewCalc(interval, meter, rating) * 24 * 60 * 60 * 1000
+    nextReviewCalc(interval, meter, rating, repetitions) * 24 * 60 * 60 * 1000
   }, GETDATE())`;
 
 const allDecks = () => "SELECT * FROM Deck";
@@ -22,13 +26,23 @@ const insertNewCardHistory = (
   cardId,
   newRating,
   meter,
-  interval
+  interval,
+  repetitions
 ) =>
   `INSERT INTO student_card_history (Student_code, Card_id, Difficulty_rating, Next_study_date, active, meter, interval) VALUES (${studentCode}, ${cardId}, ${newRating}, ${nextDate(
     interval,
     meter,
-    newRating
-  )}, 1,  ${meter + 1}, ${nextReviewCalc(interval, meter, newRating)})`;
+    newRating,
+    repetitions
+  )}, 1,  ${meter + 1}, ${nextReviewCalc(
+    interval,
+    meter,
+    newRating,
+    repetitions
+  )})`;
+
+const getAllCards = (studentCode) =>
+  `SELECT sch.id AS id, c.Deck_id as deck, sch.Card_id as card, sch.meter as meter FROM student_card_history sch JOIN card c ON c.id = sch.Card_id WHERE sch.Student_code = '${studentCode}' AND sch.active = 1 AND sch.next_study_date < GETDATE() ORDER BY c.Deck_id;`;
 
 const decksInfo = [
   {
@@ -138,6 +152,7 @@ const decksInfo = [
 const reqs = {
   login,
   allDecks,
+  getAllCards,
   studentData,
   cardsToStudy,
   deactiveCardToStudy,

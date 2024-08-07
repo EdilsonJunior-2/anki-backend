@@ -6,10 +6,6 @@ const jwt = require("jsonwebtoken");
 
 router.get("/", async (req, res) => {});
 
-router.get("/keepConnection", async (_, res) => {
-  res.status(200).send("Conenction open");
-});
-
 router.post("/login", (req, res) => {
   pool.query(reqs.login(req.body.code), (err, result) => {
     if (err || result.recordset.length === 0)
@@ -19,9 +15,31 @@ router.post("/login", (req, res) => {
       var token = jwt.sign({ id: user.code }, "asdaaaaaaaaaaaaaaaaaaaaafasd", {
         expiresIn: "1h",
       });
-      res
-        .status(200)
-        .send({ auth: true, user: result.recordset[0], token: token });
+      res.status(200).send({
+        auth: true,
+        user: user,
+        token: token,
+      });
+    }
+  });
+});
+
+router.get("/studentDecksInfo/:studentCode", (req, res) => {
+  pool.query(reqs.getAllCards(req.params.studentCode), (err, cards) => {
+    if (err) res.status(400).send(err);
+    else {
+      var decks = [...Array(51)].map((_, index) => {
+        return {
+          deckId: index + 1,
+          newCards: 0,
+          repeatedCards: 0,
+        };
+      });
+      cards.recordset.map((card) => {
+        if (card.meter > 1) decks[card.deck - 1].repeatedCards += 1;
+        else decks[card.deck - 1].newCards += 1;
+      });
+      res.status(200).send(decks);
     }
   });
 });
@@ -77,7 +95,8 @@ router.post("/cards/newRating", (req, res) => {
             card.id,
             card.rating,
             card.meter,
-            card.interval
+            card.interval,
+            card.repetitions
           ),
           (err) => {
             if (err) flag = true;
@@ -88,7 +107,7 @@ router.post("/cards/newRating", (req, res) => {
   });
 
   if (flag) res.sendStatus(500);
-  else res.sendStatus(200);
+  else res.status(200).send(req.body.cards);
 });
 
 module.exports = router;
