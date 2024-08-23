@@ -63,15 +63,21 @@ router.post("/login", (req, res) => {
     .query(reqs.login(req.body.code))
     .then((r) => {
       if (r.rows.length === 0) res.status(400).send("Usuário não encontrado");
-      const user = r.rows[0];
-      var token = jwt.sign({ id: user.code }, "asdaaaaaaaaaaaaaaaaaaaaafasd", {
-        expiresIn: "1h",
-      });
-      res.status(200).send({
-        auth: true,
-        user: user,
-        token: token,
-      });
+      else {
+        const user = r.rows[0];
+        var token = jwt.sign(
+          { id: user.code },
+          "asdaaaaaaaaaaaaaaaaaaaaafasd",
+          {
+            expiresIn: "1h",
+          }
+        );
+        res.status(200).send({
+          auth: true,
+          user: user,
+          token: token,
+        });
+      }
     })
     .catch((err) => {
       res.status(400).send("Usuário não encontrado");
