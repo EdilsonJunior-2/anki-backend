@@ -1,25 +1,44 @@
-const sql = require("mssql");
+//const sql = require("mssql");
+const pg = require("pg");
+const fs = require("fs");
 
-var config = {
-  server: process.env.DATABASE_SERVER || "DESKTOP-BTTSM8K",
-  database: process.env.DATABASE_NAME || "DBTest",
-  user: process.env.DATABASE_USER || "tcc-database",
-  password: process.env.DATABASE_PW || "paodequeijo",
-  port: process.env.DATABASE_PORT ? Number(process.env.DATABASE_PORT) : 1433,
-  options: {
-    encrypt: false,
-    trustServerCertificate: true,
-    trustedConnection: false,
-    enableArithAbort: true,
-    instancename: "SQLEXPRESS",
-  },
-};
+const { Client } = require("ssh2");
 
-const pool = sql
-  .connect(config, (err) => {
-    if (err) throw err;
-    console.log("Connection Successful!");
-  })
-  .request();
+const conn = new Client();
+
+const connectionString = `postgres://testuser:paodequeijo@132.226.62.90:5432/testdb`;
+
+const pool = new pg.Client(connectionString);
+
+conn.connect({
+  host: "132.226.62.90",
+  port: 22,
+  username: "ubuntu",
+  privateKey: fs.readFileSync("./src/key/ssh-key-2024-08-19.key"),
+});
+
+conn.on("ready", () => {
+  conn.forwardOut(
+    "127.0.0.1",
+    5432,
+    "instance-20240820-1649",
+    5432,
+    (err, channel) => {
+      if (err) {
+        console.error("Error forwarding port:", err);
+        return;
+      }
+      pool
+        .connect()
+        .then(() => {
+          console.log("Connection successful!");
+          // ... your database operations
+        })
+        .catch((err) => {
+          console.error("Error connecting to database:", err);
+        });
+    }
+  );
+});
 
 module.exports = pool;

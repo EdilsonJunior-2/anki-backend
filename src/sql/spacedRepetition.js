@@ -15,10 +15,16 @@ const nextDate = (interval, meter, rating, repetitions) =>
   }, GETDATE())`;
 
 const allDecks = () => "SELECT * FROM Deck";
+const getCard = (schId) =>
+  `SELECT * FROM student_card_history sch WHERE sch.id = ${schId}`;
+const updateStudyRecord = (studyRecord, schId) =>
+  `UPDATE student_card_history SET study_record = '${JSON.stringify(
+    studyRecord
+  )}' WHERE id = ${schId};`;
 const studentData = (studentCode) =>
   `SELECT * FROM student s WHERE s.code = '${studentCode}'`;
 const cardsToStudy = (studentCode, deckId) =>
-  `SELECT TOP (12) sch.ID AS schId, c.ID AS cardId, sch.Difficulty_rating AS rating, d.category as category, sch.meter as meter, sch.interval as interval from student_card_history sch JOIN card c ON sch.Card_id = c.ID JOIN student s ON sch.Student_code = s.code JOIN deck d ON c.Deck_id = d.ID WHERE s.code = '${studentCode}' AND c.Deck_id = ${deckId} AND sch.active = 1 AND sch.next_study_date < GETDATE() ORDER BY sch.Next_study_date`;
+  `SELECT sch.id AS sch_id, c.id AS card_id, sch.study_record as study_record, d.category as category from student_card_history sch JOIN card c ON sch.card_id = c.id JOIN student s ON sch.student_code = s.code JOIN deck d ON c.deck_id = d.id WHERE s.code = '${studentCode}' AND c.deck_id = ${deckId};`;
 const deactiveCardToStudy = (cardHistoryId) =>
   `UPDATE student_card_history SET active = 0 WHERE student_card_history.ID = ${cardHistoryId}`;
 const insertNewCardHistory = (
@@ -42,112 +48,7 @@ const insertNewCardHistory = (
   )})`;
 
 const getAllCards = (studentCode) =>
-  `SELECT sch.id AS id, c.Deck_id as deck, sch.Card_id as card, sch.meter as meter FROM student_card_history sch JOIN card c ON c.id = sch.Card_id WHERE sch.Student_code = '${studentCode}' AND sch.active = 1 AND sch.next_study_date < GETDATE() ORDER BY c.Deck_id;`;
-
-const decksInfo = [
-  {
-    id: 1,
-    length: 26,
-    initialId: 1,
-    finalId: 26,
-  },
-  {
-    id: 2,
-    length: 17,
-    initialId: 27,
-    finalId: 43,
-  },
-  {
-    id: 3,
-    length: 58,
-    initialId: 44,
-    finalId: 101,
-  },
-  {
-    id: 4,
-    length: 44,
-    initialId: 102,
-    finalId: 145,
-  },
-  {
-    id: 5,
-    length: 52,
-    initialId: 146,
-    finalId: 197,
-  },
-  {
-    id: 6,
-    length: 47,
-    initialId: 198,
-    finalId: 244,
-  },
-  {
-    id: 7,
-    length: 28,
-    initialId: 245,
-    finalId: 272,
-  },
-  {
-    id: 8,
-    length: 42,
-    initialId: 273,
-    finalId: 314,
-  },
-  {
-    id: 9,
-    length: 29,
-    initialId: 315,
-    finalId: 343,
-  },
-  {
-    id: 10,
-    length: 21,
-    initialId: 344,
-    finalId: 364,
-  },
-  {
-    id: 11,
-    length: 34,
-    initialId: 365,
-    finalId: 398,
-  },
-  {
-    id: 12,
-    length: 33,
-    initialId: 399,
-    finalId: 431,
-  },
-  {
-    id: 13,
-    length: 23,
-    initialId: 432,
-    finalId: 454,
-  },
-  {
-    id: 14,
-    length: 34,
-    initialId: 455,
-    finalId: 488,
-  },
-  {
-    id: 15,
-    length: 24,
-    initialId: 489,
-    finalId: 512,
-  },
-  {
-    id: 16,
-    length: 33,
-    initialId: 513,
-    finalId: 545,
-  },
-  {
-    id: 17,
-    length: 23,
-    initialId: 546,
-    finalId: 568,
-  },
-];
+  `SELECT sch.id AS id, c.Deck_id as deck, sch.Card_id as card, sch.study_record as study_record FROM student_card_history sch JOIN card c ON c.id = sch.Card_id WHERE sch.Student_code = '${studentCode}' ORDER BY c.Deck_id;`;
 
 const reqs = {
   login,
@@ -157,6 +58,9 @@ const reqs = {
   cardsToStudy,
   deactiveCardToStudy,
   insertNewCardHistory,
+  nextReviewCalc,
+  getCard,
+  updateStudyRecord,
 };
 
 module.exports = reqs;
