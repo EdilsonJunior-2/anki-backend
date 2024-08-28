@@ -19,6 +19,7 @@ router.get("/cards", async (req, res) => {
 router.get("/decks", async (req, res) => {
   pool.query(`SELECT * FROM deck;`).then((r) => res.status(200).send(r.rows));
 });
+*/
 
 router.get("/studentCardHistory/:studentCode", async (req, res) => {
   pool
@@ -56,7 +57,6 @@ router.get("/studentCardHistory/new/:studentCode", async (req, res) => {
     )
     .then((r) => res.sendStatus(200));
 });
-*/
 
 router.post("/login", (req, res) => {
   pool

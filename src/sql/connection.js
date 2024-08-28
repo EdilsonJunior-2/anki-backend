@@ -6,23 +6,24 @@ const { Client } = require("ssh2");
 
 const conn = new Client();
 
-const connectionString = `postgres://testuser:paodequeijo@132.226.62.90:5432/testdb`;
-
+const connectionString = `${process.env.DB_DIALECT}://${process.env.DB_USER}:${process.env.DB_PWD}@${process.env.VM_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 const pool = new pg.Client(connectionString);
 
 conn.connect({
-  host: "132.226.62.90",
-  port: 22,
-  username: "ubuntu",
-  privateKey: fs.readFileSync("./src/key/ssh-key-2024-08-19.key"),
+  host: `${process.env.VM_HOST}`,
+  port: Number(process.env.VM_PORT),
+  username: `${process.env.VM_USER}`,
+  privateKey: process.env.SSH_KEY
+    ? process.env.SSH_KEY
+    : fs.readFileSync("./src/key/ssh-key-2024-08-19.key"),
 });
 
 conn.on("ready", () => {
   conn.forwardOut(
-    "127.0.0.1",
-    5432,
-    "instance-20240820-1649",
-    5432,
+    `${process.env.LOCAL_DB_HOST}`,
+    Number(process.env.LOCAL_DB_PORT),
+    `${process.env.DB_HOST}`,
+    Number(process.env.DB_PORT),
     (err, channel) => {
       if (err) {
         console.error("Error forwarding port:", err);
