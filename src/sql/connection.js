@@ -15,7 +15,7 @@ conn.connect({
   username: `${process.env.VM_USER}`,
   privateKey: process.env.SSH_KEY
     ? process.env.SSH_KEY
-    : fs.readFileSync("./src/key/ssh-key-2024-08-19.key"),
+    : fs.readFileSync("./key/ssh-key-2024-08-19.key"),
 });
 
 conn.on("ready", () => {
