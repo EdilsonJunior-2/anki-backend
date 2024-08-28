@@ -8,8 +8,6 @@ const conn = new Client();
 
 const connectionString = `${process.env.DB_DIALECT}://${process.env.DB_USER}:${process.env.DB_PWD}@${process.env.VM_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 const pool = new pg.Client(connectionString);
-console.log(connectionString);
-console.log(process.env.SSH_KEY);
 
 conn.connect({
   host: `${process.env.VM_HOST}`,
