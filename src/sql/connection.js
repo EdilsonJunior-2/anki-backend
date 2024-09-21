@@ -16,7 +16,6 @@ conn.connect({
   privateKey:
     process.env.SSH_KEY || fs.readFileSync("./key/ssh-key-2024-08-19.key"),
 });
-
 conn.on("ready", () => {
   conn.forwardOut(
     `${process.env.LOCAL_DB_HOST}`,

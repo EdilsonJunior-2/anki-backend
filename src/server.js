@@ -3,34 +3,52 @@ const pool = require("./sql/connection");
 const reqs = require("./sql/spacedRepetition");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const chapters = require("../cards.json");
 
-router.get("/students", async (req, res) => {
+router.get("/students", async (_, res) => {
   pool
-    .query(`SELECT * FROM student;`)
+    .query(reqs.getters.allStudents)
     .then((r) => res.status(200).send(r.rows));
 });
-
-/*
-
-router.get("/cards", async (req, res) => {
-  pool.query(`SELECT * FROM card;`).then((r) => res.status(200).send(r.rows));
+router.get("/chapters", async (_, res) => {
+  pool
+    .query(reqs.getters.allChapters)
+    .then((r) => res.status(200).send(r.rows));
+});
+router.get("/decks", async (_, res) => {
+  pool.query(reqs.getters.allDecks).then((r) => res.status(200).send(r.rows));
+});
+router.get("/cards", async (_, res) => {
+  pool.query(reqs.getters.allCards).then((r) => res.status(200).send(r.rows));
 });
 
-router.get("/decks", async (req, res) => {
-  pool.query(`SELECT * FROM deck;`).then((r) => res.status(200).send(r.rows));
+router.get("/setUp", async (req, res) => {
+  var deckId = 0;
+  chapters.map((chapter, chapterIndex) => {
+    pool.query(reqs.mutations.createChapter(chapter.name)).then(() => {
+      chapter.decks.map((deck) => {
+        pool
+          .query(
+            reqs.mutations.createDeck(deck.name, chapterIndex + 1, deck.image)
+          )
+          .then(() => {
+            deckId += 1;
+            pool.query(reqs.mutations.createCards(deckId, deck.cards));
+          });
+      });
+    });
+  });
+  res.sendStatus(200);
 });
-*/
 
 router.get("/studentCardHistory/:studentCode", async (req, res) => {
   pool
-    .query(
-      `SELECT * FROM student_card_history sch WHERE sch.student_code = '${req.params.studentCode}' ;`
-    )
+    .query(reqs.getters.allStudentCardsHistory(req.params.studentCode))
     .then((r) =>
       res.status(200).send(
         r.rows.map((row) => ({
           ...row,
-          study_record: JSON.parse(row.study_record),
+          record: JSON.parse(row.record),
         }))
       )
     );
@@ -38,24 +56,13 @@ router.get("/studentCardHistory/:studentCode", async (req, res) => {
 
 router.get("/studentCardHistory/new/:studentCode", async (req, res) => {
   pool
-    .query(
-      `INSERT INTO student_card_history (student_code, card_id, study_record) VALUES
-       ${[...Array(568)]
-         .map((_, index) => {
-           return `('${req.params.studentCode}', ${
-             index + 1
-           },' ${JSON.stringify([
-             {
-               interval: 0,
-               difficulty_rating: 0,
-               rating_date: Date.now(),
-               next_study_date: Date.now(),
-             },
-           ])}')`;
-         })
-         .join(", ")};`
-    )
-    .then((r) => res.sendStatus(200));
+    .query(reqs.getters.allCards)
+    .then((r) => {
+      pool.query(
+        reqs.mutations.createStudentCardHistory(r.rows, req.params.studentCode)
+      );
+    })
+    .finally((r) => res.sendStatus(200));
 });
 
 router.post("/login", (req, res) => {
@@ -85,33 +92,32 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/studentDecksInfo/:studentCode", (req, res) => {
-  pool.query(reqs.getAllCards(req.params.studentCode)).then((r) => {
-    var decks = [...Array(51)].map((_, index) => {
-      return {
-        deckId: index + 1,
-        newCards: 0,
-        repeatedCards: 0,
-      };
-    });
-    r.rows.map((card) => {
-      const record = JSON.parse(card.study_record);
-      const currentStage = record[record.length - 1];
-      if (record.length == 1) decks[card.deck - 1].newCards += 1;
-      else if (currentStage.next_study_date < Date.now())
-        decks[card.deck - 1].repeatedCards += 1;
-    });
-    res.status(200).send(decks);
-  });
-});
-
-router.post("/updateData", (req, res) => {
   pool
-    .query("SELECT * FROM Deck")
+    .query(
+      `${reqs.getters.allChapters}; ${
+        reqs.params.allDecks
+      }; ${reqs.getters.allCardsByStudent(req.params.studentCode)}`
+    )
     .then((r) => {
-      res.status(200).send(r.rows);
-    })
-    .catch((err) => {
-      res.status(400).send(err);
+      const decks = r[1].rows;
+      decks.map((deck) => {
+        deck.cardsData = { new: 0, repeated: 0 };
+        r[2].rows
+          .filter((card) => card.deck == deck.id)
+          .map((card) => {
+            const record = JSON.parse(card.record);
+            const currentStage = record[record.length - 1];
+            if (record.length == 1) deck.cardsData.new += 1;
+            else if (currentStage.next_study_date < Date.now())
+              deck.cardsData.repeated += 1;
+          });
+      });
+      const chapters = r[0].rows;
+      chapters.map((chapter) => {
+        chapter.decks = decks.filter((el) => el.chapter === chapter.id);
+      });
+
+      res.status(200).send(chapters);
     });
 });
 
@@ -128,7 +134,7 @@ router.get("/student/:studentCode/deck/:deckId", (req, res) => {
     .then((psql_res) => {
       const cardsToSend = psql_res.rows
         .map((card) => {
-          const studyRecord = JSON.parse(card.study_record);
+          const studyRecord = JSON.parse(card.record);
           const lastRecord = studyRecord[studyRecord.length - 1];
           return {
             schId: card.sch_id,
@@ -154,9 +160,9 @@ router.post("/cards/newRating", (req, res) => {
   var flag = false;
   req.body.cards.map((card) => {
     pool
-      .query(reqs.getCard(card.schId))
+      .query(reqs.getters.cardHistory(card.schId))
       .then((r) => {
-        const studyRecord = JSON.parse(r.rows[0].study_record);
+        const studyRecord = JSON.parse(r.rows[0].record);
         const lastRecord = studyRecord[studyRecord.length - 1];
         const nextInterval = reqs.nextReviewCalc(
           lastRecord.interval,
@@ -171,7 +177,7 @@ router.post("/cards/newRating", (req, res) => {
           rating_date: Date.now(),
           next_study_date: nextStudyDate,
         });
-        pool.query(reqs.updateStudyRecord(studyRecord, card.schId));
+        pool.query(reqs.setters.updateRecord(studyRecord, card.schId));
       })
       .catch(() => {
         flag = true;
