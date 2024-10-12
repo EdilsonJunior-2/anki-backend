@@ -29,7 +29,7 @@ INSERT INTO card (deck, question, answer, requiresImage) VALUES ${cards
   .join(", ")};
 `;
 const allStudentCardsHistory = (student) =>
-  `SELECT * FROM student_card_history sch WHERE sch.student = '${student}`;
+  `SELECT * FROM student_card_history `;
 const createStudentCardHistory = (
   cards,
   student
@@ -49,8 +49,11 @@ const createStudentCardHistory = (
 const cardsToStudy = (studentCode, deckId) =>
   `SELECT sch.id AS id,
 c.id AS card,
+d.name as deck,
 sch.record AS record,
-d.category AS category
+c.question AS question,
+c.answer AS answer,
+c.requiresimage AS requiresimage
 FROM student_card_history sch
 JOIN card c ON sch.card = c.id
 JOIN student s ON sch.student = s.code
@@ -108,6 +111,7 @@ const reqs = {
   setters,
   mutations,
   login,
+  nextReviewCalc,
 };
 
 module.exports = reqs;

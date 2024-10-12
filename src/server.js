@@ -95,7 +95,7 @@ router.get("/studentDecksInfo/:studentCode", (req, res) => {
   pool
     .query(
       `${reqs.getters.allChapters}; ${
-        reqs.params.allDecks
+        reqs.getters.allDecks
       }; ${reqs.getters.allCardsByStudent(req.params.studentCode)}`
     )
     .then((r) => {
@@ -130,20 +130,22 @@ router.get("/student/:code", (req, res) => {
 
 router.get("/student/:studentCode/deck/:deckId", (req, res) => {
   pool
-    .query(reqs.cardsToStudy(req.params.studentCode, req.params.deckId))
+    .query(reqs.getters.cardsToStudy(req.params.studentCode, req.params.deckId))
     .then((psql_res) => {
       const cardsToSend = psql_res.rows
         .map((card) => {
           const studyRecord = JSON.parse(card.record);
           const lastRecord = studyRecord[studyRecord.length - 1];
           return {
-            schId: card.sch_id,
-            cardId: card.card_id,
+            schId: card.id,
+            id: card.card,
             rating: lastRecord.difficulty_rating,
             meter: studyRecord.length - 1,
             interval: lastRecord.interval,
             nextStudyDate: lastRecord.next_study_date,
-            category: card.category,
+            requiresImage: card.requiresimage,
+            question: card.question,
+            answer: card.answer,
           };
         })
         .sort((a, b) => a.nextStudyDate - b.nextStudyDate)
@@ -153,7 +155,9 @@ router.get("/student/:studentCode/deck/:deckId", (req, res) => {
         .status(200)
         .send({ deck: Number(req.params.deckId), cards: cardsToSend });
     })
-    .catch((err) => res.status(400).send(err));
+    .catch((err) => {
+      res.status(400).send(err);
+    });
 });
 
 router.post("/cards/newRating", (req, res) => {
