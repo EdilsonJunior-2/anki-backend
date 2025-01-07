@@ -1,0 +1,48 @@
+const express = require("express");
+const pool = require("../sql/connection");
+const reqs = require("../sql/queries");
+const schRouter = express.Router();
+
+schRouter.get("/:key/studentCardHistory/createTable", async (req, res) =>
+  pool
+    .query(reqs.studentCardHistory.createTable(req.params.key))
+    .then(() => res.sendStatus(200))
+    .catch((e) => res.status(400).send(e))
+);
+
+schRouter.get("/:key/studentCardHistory", async (req, res) =>
+  pool
+    .query(reqs.studentCardHistory.get(req.params.key))
+    .then((r) => res.status(200).send(r.rows))
+    .catch((e) => res.status(400).send(e))
+);
+
+schRouter.post("/:key/studentCardHistory/setupSch", async (req, res) => {
+  pool
+    .query(reqs.card.get(req.params.key))
+    .then((r) => {
+      req.body.map((student) =>
+        pool.query(
+          reqs.studentCardHistory.insert(req.params.key, r.rows, student.code)
+        )
+      );
+    })
+    .finally(() => res.sendStatus(200))
+    .catch((e) => res.status(400).send(e));
+});
+
+schRouter.delete("/:key/studentCardHistory/clearTable", async (req, res) =>
+  pool
+    .query(reqs.studentCardHistory.clearTable(req.params.key))
+    .then(() => res.sendStatus(200))
+    .catch((e) => res.status(400).send(e))
+);
+
+schRouter.delete("/:key/studentCardHistory/dropTable", async (req, res) =>
+  pool
+    .query(reqs.studentCardHistory.dropTable(req.params.key))
+    .then(() => res.sendStatus(200))
+    .catch((e) => res.status(400).send(e))
+);
+
+module.exports = schRouter;

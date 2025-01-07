@@ -1,0 +1,293 @@
+[
+  {
+    "name": "Unidade 1",
+    "decks": [
+      {
+        "id": 0,
+        "name": "Organização básica de Computadores",
+        "cards": [
+          {
+            "id": 1,
+            "question": "Funções básicas de um computador:",
+            "answer": "Processamento, armazenamento e movimentação de dados enre os componentes internos e/ou de/para o meio externo",
+            "requiresImage": false
+          },
+          {
+            "id": 2,
+            "question": "Componentes internos de um computador:",
+            "answer": "Unidade Central de Processamento (CPU, ou processador), Memória principal, Entrada e Saída (E/S) e sistemas de interconexão",
+            "requiresImage": false
+          },
+          {
+            "id": 3,
+            "question": "Função da Unidade central de Processamento (CPU):",
+            "answer": "Controlar a operação e realizar as funções de processamento de dados (é o cérebro do computador)",
+            "requiresImage": false
+          },
+          {
+            "id": 4,
+            "question": "Função da memória principal:",
+            "answer": "Armazenamento de dados",
+            "requiresImage": false
+          },
+          {
+            "id": 5,
+            "question": "Funcão do E/S:",
+            "answer": "Mover dados entre o computador e o ambiente externo",
+            "requiresImage": false
+          },
+          {
+            "id": 6,
+            "question": "Função das interconexões do sistema:",
+            "answer": "Realizar a comunicação entre CPU, memória principal e E/S (exemplo: Barramentos do sistema)",
+            "requiresImage": false
+          },
+          {
+            "id": 7,
+            "question": "Distinção entre organização e arquitetura do computador",
+            "answer": "A arquitetura de um computador refere-se aos atributos de um sistemas visíveis ao programador (atributos que possuem impacto direto com a execução de um programa); A organização refere-se às unidades operacionais e interconexões que realizam as especificações arquiteturais (em outras palavras, a organização define a forma que as ações serão executadas pela arquitetura)",
+            "requiresImage": false
+          },
+          {
+            "id": 8,
+            "question": "Componentes estruturais da CPU:",
+            "answer": "Unidae de controle, unidade aritmética e lógica (ALU), registradores e interconexão da CPU",
+            "requiresImage": false
+          },
+          {
+            "id": 9,
+            "question": "Função da Unidade de controle:",
+            "answer": "Controla as ações da CPU e, portanto, do computador",
+            "requiresImage": false
+          },
+          {
+            "id": 10,
+            "question": "Função da unidade aritmética e lógica (ALU):",
+            "answer": "Realizar as funções de processamento de dados do computador",
+            "requiresImage": false
+          },
+          {
+            "id": 11,
+            "question": "Funcão dos registradores:",
+            "answer": "Funcionam como um armazenamento interno à CPU, de mais fácil e rápido acesso que a memória principal",
+            "requiresImage": false
+          },
+          {
+            "id": 12,
+            "question": "O que define uma família de computadores?",
+            "answer": "O fato de que, apesar de organizações diferentes, os computadores possuem a mesma arquitetura. Exemplo: Computadores de arqitetura x86",
+            "requiresImage": false
+          },
+          {
+            "id": 13,
+            "question": "Liste e explique as principais características de uma família de computadores",
+            "answer": "Instruções definidas, semelhantes ou idênticas: Em muitos casos, o mesmo conjunto de instruções de uma máquina é compatível com todos os membros da família (Deste modo, um programa que executa em uma máquina também será executado em qualquer outra); Sistemas operacionais semelhantes ou idêntico: O mesmo sistema operacional básico está disponível para todos os membros da família. Aumento de velocidade, número de portas de E/S, tamanho da memória e custo: essees elemenos aumentam à medida que se sobe entre os membros da família.",
+            "requiresImage": false
+          },
+          {
+            "id": 14,
+            "question": "Qual é a principal característica que distingue um microprocessador?",
+            "answer": "Em um microprocessador, todos os componentes da CPU estão em um único chip",
+            "requiresImage": false
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Memória Interna",
+        "cards": [
+          {
+            "id": 15,
+            "question": "Principais propriedades da memória semicondutoda",
+            "answer": "Apresentam dois estados estáveis (ou semi-estáveis) que podem ser utilizados para representar valores binários para definir estado",
+            "requiresImage": false
+          },
+          {
+            "id": 16,
+            "question": "Diferença principal entre DRAM (memória dinâmica) e SRAM (memória estática) em termos de aplicação",
+            "answer": "SRAM é utilizada para a memória cache, enquanto a DRAM é usada para a memória principal",
+            "requiresImage": false
+          },
+          {
+            "id": 17,
+            "question": "Diferença principal entre DRAM (memória dinâmica) e SRAM (memória estática) em termos de características como velocidade, tamanho e custo",
+            "answer": "A SRAM é maior, mais rápida e menos densa que a DRAM, mas também possui um custo de utilização maior",
+            "requiresImage": false
+          },
+          {
+            "id": 18,
+            "question": "Diferença principal entre DRAM (memória dinâmica) e SRAM (memória estática) em termos de características como velocidade, tamanho e custo",
+            "answer": "A SRAM é mais rápida e menos densa que a DRAM, mas também é mais cara",
+            "requiresImage": false
+          },
+          {
+            "id": 19,
+            "question": "O que é o bit de paridade?",
+            "answer": "Um parâmetro opcional, usado em comunicações seriais para determinar se o caractere de dados que está sendo transmitido é corretamente recebido pelo dispositivo remoto",
+            "requiresImage": false
+          },
+          {
+            "id": 20,
+            "question": "Composição física da DRAM:",
+            "answer": "Um dispositivo analógico que utiliza capacitores que armazenam valor de carga dentro de uma faixa; Um valor limiar determina se  carga é interpretada como 0 ou 1",
+            "requiresImage": false
+          },
+          {
+            "id": 21,
+            "question": "Composição física da SRAM:",
+            "answer": "Um dispositivo digital, em que os valores binários são armazenados usando portas lógicas flip-flop",
+            "requiresImage": false
+          },
+          {
+            "id": 22,
+            "question": "Sugira motivos pelos quais as RAM têm sido tradicionalmente organizadas como 1 bit por chip, enquanto as ROM normalmente são organizadas com múltiplos bits por chip",
+            "answer": "Pelo lado da RAM, a organização de 1 bit por chip requer menos pinos por pacote e, portanto, uma maior densidade debist pode ser alcançada por um pacote de determinado tamanho, além de ser mais fiável por ter apenas um condutor de saída. Já pelo lado da ROM, o fato dela ser muito menor que a RAM e ser muitas vezes possível conseguir uma ROM completa em apenas um ou dois registros, o uso de múltiplos bits reduz custos de execução",
+            "requiresImage": false
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Organização de dados",
+        "cards": [
+          {
+            "id": 1,
+            "question": "Componentes internos de um computador:",
+            "answer": "Unidade Central de Processamento (CPU), Memória principal, Entrada e Saída (E/S) e sistemas de interconexão",
+            "requiresImage": false
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "MIPS e modos de endereçamento",
+        "cards": [
+          {
+            "id": 1,
+            "question": "",
+            "answer": "",
+            "requiresImage": false
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Pipelining e Hazards",
+        "cards": [
+          {
+            "id": 1,
+            "question": "",
+            "answer": "",
+            "requiresImage": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Unidade 2",
+    "decks": [
+      {
+        "id": 5,
+        "name": "Arquitetura RISC vs. CISC",
+        "cards": [
+          {
+            "id": 1,
+            "question": "",
+            "answer": "",
+            "requiresImage": false
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Arquitetura RISC vs. CISC",
+        "cards": [
+          {
+            "id": 1,
+            "question": "",
+            "answer": "",
+            "requiresImage": false
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Algoritmo de Tomasulo",
+        "cards": [
+          {
+            "id": 1,
+            "question": "",
+            "answer": "",
+            "requiresImage": false
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "name": "Memória Cache",
+        "cards": [
+          {
+            "id": 1,
+            "question": "",
+            "answer": "",
+            "requiresImage": false
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "name": "Entrada e Saída",
+        "cards": [
+          {
+            "id": 1,
+            "question": "",
+            "answer": "",
+            "requiresImage": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Unidade 3",
+    "decks": [
+      {
+        "id": 10,
+        "name": "Barramentos",
+        "cards": [
+          {
+            "id": 1,
+            "question": "",
+            "answer": "",
+            "requiresImage": false
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "name": "Medidas de desempenho e técnicas de Avaliação",
+        "cards": [
+          {
+            "id": 1,
+            "question": "",
+            "answer": "",
+            "requiresImage": false
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "name": "Computação de Alto Desempenho",
+        "cards": [
+          {
+            "id": 1,
+            "question": "",
+            "answer": "",
+            "requiresImage": false
+          }
+        ]
+      }
+    ]
+  }
+]
