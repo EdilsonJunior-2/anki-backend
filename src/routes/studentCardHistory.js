@@ -17,6 +17,15 @@ schRouter.get("/:key/studentCardHistory", async (req, res) =>
     .catch((e) => res.status(400).send(e))
 );
 
+schRouter.get("/:key/studentCardHistory/:studentCode", async (req, res) =>
+  pool
+    .query(
+      reqs.studentCardHistory.byStudent(req.params.key, req.params.studentCode)
+    )
+    .then((r) => res.status(200).send(r.rows))
+    .catch((e) => res.status(400).send(e))
+);
+
 schRouter.post("/:key/studentCardHistory/setupSch", async (req, res) => {
   pool
     .query(reqs.card.get(req.params.key))

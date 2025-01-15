@@ -52,8 +52,7 @@ const deck = {
 const card = {
   createTable: (key) =>
     `CREATE TABLE ${key}_cards (id SERIAL PRIMARY KEY, question TEXT, answer TEXT, requiresImage BOOLEAN, deck INT, FOREIGN KEY (deck) REFERENCES ${key}_decks(id));`,
-  get: (key, rules) =>
-    `SELECT * FROM ${key}_cards${rules ? ` WHERE ${rules.join("AND ")}` : ""};`,
+  get: (key) => `SELECT * FROM ${key}_cards card ORDER BY card.deck;`,
   insert: (key, deck, cards) => `
   INSERT INTO ${key}_cards (deck, question, answer, requiresImage) VALUES ${cards
     .map((card) => {
@@ -110,7 +109,7 @@ const studentCardHistory = {
       FROM ${key}_student_card_history sch
       JOIN ${key}_cards c ON c.id = sch.card
       WHERE sch.student = '${studentCode}'
-      ORDER BY c.deck;`,
+      ORDER BY sch.card;`,
 };
 
 const reqs = {

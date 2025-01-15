@@ -3,6 +3,43 @@ const pool = require("../sql/connection");
 const reqs = require("../sql/queries");
 const studyRouter = express.Router();
 
+studyRouter.get("/:key/study/decksInfo/:studentCode", (req, res) => {
+  pool
+    .query(
+      `${reqs.chapter.get(req.params.key)} ${reqs.deck.get(
+        req.params.key
+      )} ${reqs.studentCardHistory.byStudent(
+        req.params.key,
+        req.params.studentCode
+      )}`
+    )
+    .then((r) => {
+      const chapters = r[0].rows;
+      const decks = r[1].rows;
+      const cards = r[2].rows;
+
+      decks.map((deck) => {
+        deck.cardsData = { new: 0, repeated: 0 };
+        cards
+          .filter((card) => card.deck == deck.id)
+          .map((card) => {
+            const record = JSON.parse(card.record);
+            const currentStage = record[record.length - 1];
+            if (record.length == 1) deck.cardsData.new += 1;
+            else if (currentStage.next_study_date < Date.now())
+              deck.cardsData.repeated += 1;
+          });
+      });
+
+      chapters.map((chapter) => {
+        chapter.decks = decks.filter((d) => d.chapter === chapter.id);
+      });
+
+      res.status(200).send(chapters);
+    })
+    .catch((e) => res.status(400).send(e));
+});
+
 studyRouter.get("/:key/study/:studentCode/:deckId", (req, res) => {
   pool
     .query(
