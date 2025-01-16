@@ -10,6 +10,13 @@ studentRouter.get("/:key/student/createTable", async (req, res) =>
     .catch((e) => res.status(400).send(e))
 );
 
+studentRouter.delete("/:key/student/dropTable", async (req, res) =>
+  pool
+    .query(reqs.student.dropTable(req.params.key))
+    .then((r) => res.status(200).send(r))
+    .catch((e) => res.status(400).send(e))
+);
+
 studentRouter.get("/:key/student", async (req, res) =>
   pool
     .query(reqs.student.get(req.params.key))
@@ -26,7 +33,7 @@ studentRouter.get("/:key/student/:code", async (req, res) =>
 
 studentRouter.post("/:key/student", async (req, res) =>
   pool
-    .query(reqs.student.insert(req.params.key, req.body))
+    .query(reqs.student.insertMultiple(req.params.key, req.body))
     .then(() => res.sendStatus(200))
     .catch((e) => res.status(400).send(e))
 );
@@ -41,13 +48,6 @@ studentRouter.delete("/:key/student/:studentCode", async (req, res) =>
 studentRouter.delete("/:key/student/clearTable", async (req, res) =>
   pool
     .query(reqs.student.clearTable(req.params.key))
-    .then(() => res.sendStatus(200))
-    .catch((e) => res.status(400).send(e))
-);
-
-studentRouter.delete("/:key/student/dropTable", async (req, res) =>
-  pool
-    .query(reqs.student.dropTable(req.params.key))
     .then(() => res.sendStatus(200))
     .catch((e) => res.status(400).send(e))
 );

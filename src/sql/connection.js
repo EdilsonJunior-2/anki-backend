@@ -8,13 +8,11 @@ const conn = new Client();
 
 const connectionString = `${process.env.DB_DIALECT}://${process.env.DB_USER}:${process.env.DB_PWD}@${process.env.VM_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 const pool = new pg.Client(connectionString);
-
 conn.connect({
   host: `${process.env.VM_HOST}`,
   port: Number(process.env.VM_PORT),
   username: `${process.env.VM_USER}`,
-  privateKey:
-    process.env.SSH_KEY || fs.readFileSync("./key/ssh-key-2024-08-19.key"),
+  privateKey: process.env.SSH_KEY || fs.readFileSync("./ssh/key.key"),
 });
 conn.on("ready", () => {
   conn.forwardOut(

@@ -8,15 +8,17 @@ const nextReviewCalc = (previousInterval, meter, rating, repetitions) =>
 
 const student = {
   createTable: (key) =>
-    `CREATE TABLE ${key}_students (id SERIAL PRIMARY KEY, name VARCHAR(100), code TEXT, UNIQUE (code));`,
+    `CREATE TABLE ${key}_students (id SERIAL PRIMARY KEY, name VARCHAR(100), code TEXT, admin BOOLEAN, UNIQUE (code));`,
   get: (key) => `SELECT * FROM ${key}_students`,
   getByCode: (key, studentCode) =>
     `SELECT * FROM ${key}_students s WHERE code = '${studentCode}'`,
   insertMultiple: (key, students) =>
-    `INSERT INTO ${key}_students (name, code) VALUES
+    `INSERT INTO ${key}_students (name, code, admin) VALUES
   ${students
     .map((student) => {
-      return `('${student.name}','${student.code}')`;
+      return `('${student.name}','${student.code}', ${
+        student.admin ? "TRUE" : "FALSE"
+      })`;
     })
     .join(", ")};`,
   clear: (key, studentCode) =>
