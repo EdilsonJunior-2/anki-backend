@@ -7,7 +7,7 @@ const authRouter = require("./routes/auth");
 const buildRouter = require("./routes/build");
 const schRouter = require("./routes/studentCardHistory");
 const studyRouter = require("./routes/study");
-
+const adminRouter = require("./routes/admin");
 const router = express.Router();
 
 router.use("/", authRouter);
@@ -18,5 +18,6 @@ router.use("/", chapterRouter);
 router.use("/", deckRouter);
 router.use("/", cardRouter);
 router.use("/", schRouter);
+router.use("/", adminRouter);
 
 module.exports = router;

@@ -9,7 +9,6 @@ authRouter.post("/:key/login", (req, res) => {
     .query(reqs.student.getByCode(req.params.key, req.body.code))
     .then((r) => {
       if (r.rows.length > 0) {
-        console.log(r.rows.length);
         const user = r.rows[0];
         var token = jwt.sign(
           { id: user.code },

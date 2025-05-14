@@ -21,7 +21,9 @@ studentRouter.get("/:key/student", async (req, res) =>
   pool
     .query(reqs.student.get(req.params.key))
     .then((r) => res.status(200).send(r.rows))
-    .catch((e) => res.status(400).send(e))
+    .catch((e) => {
+      res.status(400).send(e);
+    })
 );
 
 studentRouter.get("/:key/student/:code", async (req, res) =>

@@ -108,6 +108,13 @@ studyRouter.post("/:key/updateRecords", async (req, res) => {
           );
         });
     });
+    const nowDate = Date.now();
+    pool.query(
+      `UPDATE ${req.params.key}_students
+      SET study_timestamp = '${nowDate}'
+      WHERE code = '${req.body.studentCode}';
+      `
+    );
   } catch (e) {
     res.status(400).send(e);
   } finally {

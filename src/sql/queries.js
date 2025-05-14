@@ -9,7 +9,7 @@ const nextReviewCalc = (previousInterval, meter, rating, repetitions) =>
 const student = {
   createTable: (key) =>
     `CREATE TABLE ${key}_students (id SERIAL PRIMARY KEY, name VARCHAR(100), code TEXT, admin BOOLEAN, UNIQUE (code));`,
-  get: (key) => `SELECT * FROM ${key}_students`,
+  get: (key) => `SELECT * FROM ${key}_students;`,
   getByCode: (key, studentCode) =>
     `SELECT * FROM ${key}_students s WHERE code = '${studentCode}'`,
   insertMultiple: (key, students) =>
@@ -22,9 +22,11 @@ const student = {
     })
     .join(", ")};`,
   clear: (key, studentCode) =>
-    `DELETE FROM ${key}_students  s WHERE s.code = '${studentCode}';`,
+    `DELETE FROM ${key}_students s WHERE s.code = '${studentCode}';`,
   clearTable: (key) => `DELETE FROM ${key}_students;`,
   dropTable: (key) => `DROP TABLE ${key}_students;`,
+  updateTimestamp: (key, timestamp, studentCode) =>
+    `UPDATE ${key}_students SET s.study_timestamp = ${timestamp} WHERE code = ${studentCode}`,
 };
 
 const chapter = {
@@ -34,6 +36,7 @@ const chapter = {
     `SELECT * FROM ${key}_chapters${
       rules ? ` WHERE ${rules.join("AND ")}` : ""
     };`,
+  getCount: (key) => `SELECT COUNT(*) FROM ${key}_chapters`,
   insert: (key, name) =>
     `INSERT INTO ${key}_chapters (name) VALUES ('${name}')`,
   clearTable: (key) => `DELETE FORM ${key}_chapters;`,
@@ -45,6 +48,7 @@ const deck = {
     `CREATE TABLE ${key}_decks (id SERIAL PRIMARY KEY, name TEXT, image VARCHAR(20), chapter INT, FOREIGN KEY (chapter) REFERENCES ${key}_chapters(id));`,
   get: (key, rules) =>
     `SELECT * FROM ${key}_decks${rules ? ` WHERE ${rules.join("AND ")}` : ""};`,
+  getCount: (key) => `SELECT COUNT(*) FROM ${key}_decks`,
   insert: (key, name, chapter, image) =>
     `INSERT INTO ${key}_decks (name, chapter, image) VALUES ('${name}', ${chapter}, '${image}')`,
   clearTable: (key) => `DELETE FORM ${key}_decks;`,
@@ -107,11 +111,33 @@ const studentCardHistory = {
     WHERE s.code = '${studentCode}' 
     AND c.deck = ${deckId};`,
   byStudent: (key, studentCode) =>
-    `SELECT sch.id AS id, c.deck as deck, sch.card as card, sch.record as record
+    `SELECT sch.id AS id,
+  c.deck as deck,
+  sch.card as card,
+  sch.record as record
       FROM ${key}_student_card_history sch
       JOIN ${key}_cards c ON c.id = sch.card
       WHERE sch.student = '${studentCode}'
-      ORDER BY sch.card;`,
+      ORDER BY c.deck;`,
+};
+
+const admin = {
+  get: (key, studentCode) =>
+    `SELECT s.id AS id,
+    s.name AS name,
+    s.code AS code,
+    sch.record AS record,
+    c.id AS card,
+    d.id AS deck,
+    ch.id AS chapter
+    FROM ${key}_student_card_history sch
+    JOIN ${key}_students s ON sch.student = s.code
+    JOIN ${key}_cards c ON sch.card = c.id
+    JOIN ${key}_decks d ON c.deck = d.id
+    JOIN ${key}_chapters ch ON d.chapter = ch.id
+    WHERE sch.student = '${studentCode}'
+    ORDER BY s.id ASC, ch.id ASC, d.id ASC, c.id ASC`,
+  getStudents: (key) => `SELECT * FROM ${key}_students s ORDER BY s.name`,
 };
 
 const reqs = {
@@ -121,6 +147,7 @@ const reqs = {
   card,
   studentCardHistory,
   nextReviewCalc,
+  admin,
 };
 
 module.exports = reqs;
