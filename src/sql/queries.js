@@ -8,7 +8,7 @@ const nextReviewCalc = (previousInterval, meter, rating, repetitions) =>
 
 const student = {
   createTable: (key) =>
-    `CREATE TABLE ${key}_students (id SERIAL PRIMARY KEY, name VARCHAR(100), code TEXT, admin BOOLEAN, UNIQUE (code));`,
+    `CREATE TABLE ${key}_students (id SERIAL PRIMARY KEY, name VARCHAR(100), code TEXT, admin BOOLEAN, study_timestamp BIGINT, UNIQUE (code));`,
   get: (key) => `SELECT * FROM ${key}_students;`,
   getByCode: (key, studentCode) =>
     `SELECT * FROM ${key}_students s WHERE code = '${studentCode}'`,

@@ -31,4 +31,11 @@ chapterRouter.delete("/:key/chapter/dropTable", async (req, res) =>
     .catch((e) => res.status(400).send(e))
 );
 
+chapterRouter.post("/:key/chapter/insert", async (req, res) =>
+  pool
+    .query(reqs.chapter.insert(req.params.key, req.body.chapter))
+    .then(() => res.sendStatus(200))
+    .catch((e) => res.status(400).send(e))
+);
+
 module.exports = chapterRouter;

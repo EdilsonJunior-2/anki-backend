@@ -3,290 +3,180 @@
     "name": "Unidade 1",
     "decks": [
       {
-        "id": 0,
-        "name": "Organização básica de Computadores",
+        "name": "Sistemas de numeração. Códigos de representação.",
         "cards": [
           {
-            "id": 1,
-            "question": "Funções básicas de um computador:",
-            "answer": "Processamento, armazenamento e movimentação de dados enre os componentes internos e/ou de/para o meio externo",
+            "question": "Qual a lógica de peso de um dígito binário?",
+            "answer": "O peso de cada dígito é relativo à sua posição tendo o LSB (Least Significant Bit) como referência: O LSB possui peso 0, e os dígitos à esquerda possuem o peso incrementado em 1 a cada posição mais à esquerda.",
             "requiresImage": false
           },
           {
-            "id": 2,
-            "question": "Componentes internos de um computador:",
-            "answer": "Unidade Central de Processamento (CPU, ou processador), Memória principal, Entrada e Saída (E/S) e sistemas de interconexão",
+            "question": "Converta o binário 100011011011 em seu equivalente decimal e hexadecimal.",
+            "answer": "Decimal: 2267. Hexadecimal: 8DB",
             "requiresImage": false
           },
           {
-            "id": 3,
-            "question": "Função da Unidade central de Processamento (CPU):",
-            "answer": "Controlar a operação e realizar as funções de processamento de dados (é o cérebro do computador)",
+            "question": "Quantos bits são necessários para representar valores decimais na faixa de 0 a 35.400?",
+            "answer": "16 bits. (2^15) - 1 = 32767, (2^16) - 1 = 63555.",
             "requiresImage": false
           },
           {
-            "id": 4,
-            "question": "Função da memória principal:",
-            "answer": "Armazenamento de dados",
+            "question": "Converta o decimal 934 em binário.",
+            "answer": "1110100110",
             "requiresImage": false
           },
           {
-            "id": 5,
-            "question": "Funcão do E/S:",
-            "answer": "Mover dados entre o computador e o ambiente externo",
+            "question": "Qual é a faixa total de valores decimais que podemos representar com 8 bits?",
+            "answer": "Nesse caso, temos N = 8. Assim, podemos representar os números decimais na faixa de 0 a (2^8) - 1 = 255. Podemos comprovar isso verificando que 11111111, convertido em decimal, vale 255",
             "requiresImage": false
           },
           {
-            "id": 6,
-            "question": "Função das interconexões do sistema:",
-            "answer": "Realizar a comunicação entre CPU, memória principal e E/S (exemplo: Barramentos do sistema)",
+            "question": " Escreva os próximos quatro números da seguinte contagem hexa: E9A, E9B, E9C, E9D, ___, ___, ___, ___.",
+            "answer": "E9E, E9F, EA0, EA1",
             "requiresImage": false
           },
           {
-            "id": 7,
-            "question": "Distinção entre organização e arquitetura do computador",
-            "answer": "A arquitetura de um computador refere-se aos atributos de um sistemas visíveis ao programador (atributos que possuem impacto direto com a execução de um programa); A organização refere-se às unidades operacionais e interconexões que realizam as especificações arquiteturais (em outras palavras, a organização define a forma que as ações serão executadas pela arquitetura)",
+            "question": "Converta 8B69 em decimal e em binário.",
+            "answer": "Decimal: 35689. Binário: 1000101101101001",
             "requiresImage": false
           },
           {
-            "id": 8,
-            "question": "Componentes estruturais da CPU:",
-            "answer": "Unidae de controle, unidade aritmética e lógica (ALU), registradores e interconexão da CPU",
+            "question": "Que faixa de valores decimais pode ser representada por números hexa de quatro dígitos?",
+            "answer": "A faixa correspondente é de 1000 a FFFF. Esses valores hexadecimais correspondem aos números decimais entre 4096 e 65535",
             "requiresImage": false
           },
           {
-            "id": 9,
-            "question": "Função da Unidade de controle:",
-            "answer": "Controla as ações da CPU e, portanto, do computador",
+            "question": " Represente o valor decimal 5302 no equivalente binário puro. Em seguida, codifique o mesmo número decimal usando BCD",
+            "answer": "Binário: 1010010110110. BCD: 0101001100000010",
             "requiresImage": false
           },
           {
-            "id": 10,
-            "question": "Função da unidade aritmética e lógica (ALU):",
-            "answer": "Realizar as funções de processamento de dados do computador",
+            "question": "Qual é a vantagem da codificação em BCD de um número decimal quando comparada com o binário puro? E qual é a desvantagem?",
+            "answer": "A principal vantagem do código BCD é a relativa facilidade de conversão em decimal e vice-versa. Apenas os grupos de 4 bits dos dígitos de 0 a 9 precisam ser memorizados. No entanto, o BCD geralmente requer mais bits do que o binário puro, o que demanda um maior espaço de armazenamento, além do fato de que, como ele é projetado apenas para dígitos decimais (0-9, ou 0000-1001), os 6 valores restantes que podem ser representado por 4 bits (10-15, ou 1010-1111), são disperdiçados.",
             "requiresImage": false
           },
           {
-            "id": 11,
-            "question": "Funcão dos registradores:",
-            "answer": "Funcionam como um armazenamento interno à CPU, de mais fácil e rápido acesso que a memória principal",
+            "question": "Quantos bytes são necessários para representar o decimal 23510 em binário?",
+            "answer": "Representação binária: 101101111010110. 15 bits, 2 bytes.",
             "requiresImage": false
           },
           {
-            "id": 12,
-            "question": "O que define uma família de computadores?",
-            "answer": "O fato de que, apesar de organizações diferentes, os computadores possuem a mesma arquitetura. Exemplo: Computadores de arqitetura x86",
+            "question": "Qual é o maior valor decimal que pode ser representado em BCD, usando dois bytes?",
+            "answer": "2 bytes representam 16 bits. Como cada dígito em BCD é representado por 4 bits, o maior valor decimal é 9999 (1001 1001 1001 1001)",
             "requiresImage": false
           },
           {
-            "id": 13,
-            "question": "Liste e explique as principais características de uma família de computadores",
-            "answer": "Instruções definidas, semelhantes ou idênticas: Em muitos casos, o mesmo conjunto de instruções de uma máquina é compatível com todos os membros da família (Deste modo, um programa que executa em uma máquina também será executado em qualquer outra); Sistemas operacionais semelhantes ou idêntico: O mesmo sistema operacional básico está disponível para todos os membros da família. Aumento de velocidade, número de portas de E/S, tamanho da memória e custo: essees elemenos aumentam à medida que se sobe entre os membros da família.",
+            "question": "Quantos dígitos hexadecimais um nibble pode representar?",
+            "answer": "Um nibble possui o tamanho de 4 bits, sendo o maior valor possível de ser representado por ele é 1111 (binário), ou F (hexadecimal). Logo, apenas um dígito hexadecimal pode ser representado por um nibble.",
             "requiresImage": false
           },
           {
-            "id": 14,
-            "question": "Qual é a principal característica que distingue um microprocessador?",
-            "answer": "Em um microprocessador, todos os componentes da CPU estão em um único chip",
+            "question": "Codifique, em ASCII, a seguinte mensagem, usando a representação hexa: ‘COST = $449’.",
+            "answer": "01000011 01001111 01010011 01010100 00100000 00111101 00100000 00100100 00110100 00110100 00111001",
+            "requiresImage": false
+          },
+          {
+            "question": "Converta a mensagem codificada a seguir: 01010010 01001111 01000100 01001111 01001100 01000110 01001111",
+            "answer": "RODOLFO",
+            "requiresImage": false
+          },
+          {
+            "question": "Converta o decimal 255 em binário",
+            "answer": "11111111",
+            "requiresImage": false
+          },
+          {
+            "question": "Converta o binário 1110101000100111 em decimal",
+            "answer": "59943",
+            "requiresImage": false
+          },
+          {
+            "question": "Converta o decimal 465 em hexadecimal",
+            "answer": "1D1",
+            "requiresImage": false
+          },
+          {
+            "question": "Converta o hexadecimal 465 em binário",
+            "answer": "11001000000",
+            "requiresImage": false
+          },
+          {
+            "question": "Converta o decimal 1600 em binário",
+            "answer": "11001000000",
+            "requiresImage": false
+          },
+          {
+            "question": "Converta o decimal 1600 em BCD",
+            "answer": "0001011000000000",
+            "requiresImage": false
+          },
+          {
+            "question": "Converta o decimal 1600 em hexadecimal",
+            "answer": "640",
+            "requiresImage": false
+          },
+          {
+            "question": "Converta o hexadecimal 1600 em binário",
+            "answer": "1011000000000",
+            "requiresImage": false
+          },
+          {
+            "question": "Represente o valor decimal 37 em binário, BCD, hexadecimal e ASCII (considere cada dígito um caractere).",
+            "answer": "Binário: 100101. BCD: 00110111. Hexadecimal: 25. ASCII: 33 37",
+            "requiresImage": false
+          },
+          {
+            "question": "Em um CD de áudio, o sinal de tensão de áudio é amostrado cerca de 44.000 vezes por segundo, e o valor de cada amostra é gravado na superfície do CD como um número binário. Em outras palavras, cada número binário gravado representa um único ponto da forma de onda do sinal de áudio. Se forem usados 10 bits, quantos bits serão gravados no CD em 1 segundo?",
+            "answer": "440.000 bits",
+            "requiresImage": false
+          },
+          {
+            "question": "Qual o maior valor decimal que pode ser representado por um número binário de 13 bits?",
+            "answer": "8191",
+            "requiresImage": false
+          },
+          {
+            "question": " Qual é o maior valor que pode ser representado por três dígitos hexa?",
+            "answer": "4095",
+            "requiresImage": false
+          },
+          {
+            "question": "Quantos dígitos hexadecimais são necessários para representar os números decimais até 1 milhão? E até 4 milhões?",
+            "answer": "1 milhão: 5 dígitos (1000000 = F4240). 4 milhões: 6 dígitos (4000000 = 3D0900)",
+            "requiresImage": false
+          },
+          {
+            "question": "Converta o BCD 1001011101010010 em decimal",
+            "answer": "9752",
+            "requiresImage": false
+          },
+          {
+            "question": "Converta o binário 011101010111011101110101 em ASCII",
+            "answer": "uwu",
+            "requiresImage": false
+          },
+
+          {
+            "question": "Qual é o nibble mais significativo do código ASCII para a letra X?",
+            "answer": "0101",
             "requiresImage": false
           }
         ]
       },
       {
         "id": 1,
-        "name": "Memória Interna",
-        "cards": [
-          {
-            "id": 15,
-            "question": "Principais propriedades da memória semicondutoda",
-            "answer": "Apresentam dois estados estáveis (ou semi-estáveis) que podem ser utilizados para representar valores binários para definir estado",
-            "requiresImage": false
-          },
-          {
-            "id": 16,
-            "question": "Diferença principal entre DRAM (memória dinâmica) e SRAM (memória estática) em termos de aplicação",
-            "answer": "SRAM é utilizada para a memória cache, enquanto a DRAM é usada para a memória principal",
-            "requiresImage": false
-          },
-          {
-            "id": 17,
-            "question": "Diferença principal entre DRAM (memória dinâmica) e SRAM (memória estática) em termos de características como velocidade, tamanho e custo",
-            "answer": "A SRAM é maior, mais rápida e menos densa que a DRAM, mas também possui um custo de utilização maior",
-            "requiresImage": false
-          },
-          {
-            "id": 18,
-            "question": "Diferença principal entre DRAM (memória dinâmica) e SRAM (memória estática) em termos de características como velocidade, tamanho e custo",
-            "answer": "A SRAM é mais rápida e menos densa que a DRAM, mas também é mais cara",
-            "requiresImage": false
-          },
-          {
-            "id": 19,
-            "question": "O que é o bit de paridade?",
-            "answer": "Um parâmetro opcional, usado em comunicações seriais para determinar se o caractere de dados que está sendo transmitido é corretamente recebido pelo dispositivo remoto",
-            "requiresImage": false
-          },
-          {
-            "id": 20,
-            "question": "Composição física da DRAM:",
-            "answer": "Um dispositivo analógico que utiliza capacitores que armazenam valor de carga dentro de uma faixa; Um valor limiar determina se  carga é interpretada como 0 ou 1",
-            "requiresImage": false
-          },
-          {
-            "id": 21,
-            "question": "Composição física da SRAM:",
-            "answer": "Um dispositivo digital, em que os valores binários são armazenados usando portas lógicas flip-flop",
-            "requiresImage": false
-          },
-          {
-            "id": 22,
-            "question": "Sugira motivos pelos quais as RAM têm sido tradicionalmente organizadas como 1 bit por chip, enquanto as ROM normalmente são organizadas com múltiplos bits por chip",
-            "answer": "Pelo lado da RAM, a organização de 1 bit por chip requer menos pinos por pacote e, portanto, uma maior densidade debist pode ser alcançada por um pacote de determinado tamanho, além de ser mais fiável por ter apenas um condutor de saída. Já pelo lado da ROM, o fato dela ser muito menor que a RAM e ser muitas vezes possível conseguir uma ROM completa em apenas um ou dois registros, o uso de múltiplos bits reduz custos de execução",
-            "requiresImage": false
-          }
-        ]
+        "name": "Descrição de circuitos lógicos (Parte 1)",
+        "cards": []
       },
       {
         "id": 2,
-        "name": "Organização de dados",
-        "cards": [
-          {
-            "id": 1,
-            "question": "Componentes internos de um computador:",
-            "answer": "Unidade Central de Processamento (CPU), Memória principal, Entrada e Saída (E/S) e sistemas de interconexão",
-            "requiresImage": false
-          }
-        ]
+        "name": "Descrição de circuitos lógicos (Parte 2)",
+        "cards": []
       },
       {
         "id": 3,
         "name": "MIPS e modos de endereçamento",
-        "cards": [
-          {
-            "id": 1,
-            "question": "",
-            "answer": "",
-            "requiresImage": false
-          }
-        ]
-      },
-      {
-        "id": 4,
-        "name": "Pipelining e Hazards",
-        "cards": [
-          {
-            "id": 1,
-            "question": "",
-            "answer": "",
-            "requiresImage": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Unidade 2",
-    "decks": [
-      {
-        "id": 5,
-        "name": "Arquitetura RISC vs. CISC",
-        "cards": [
-          {
-            "id": 1,
-            "question": "",
-            "answer": "",
-            "requiresImage": false
-          }
-        ]
-      },
-      {
-        "id": 6,
-        "name": "Arquitetura RISC vs. CISC",
-        "cards": [
-          {
-            "id": 1,
-            "question": "",
-            "answer": "",
-            "requiresImage": false
-          }
-        ]
-      },
-      {
-        "id": 7,
-        "name": "Algoritmo de Tomasulo",
-        "cards": [
-          {
-            "id": 1,
-            "question": "",
-            "answer": "",
-            "requiresImage": false
-          }
-        ]
-      },
-      {
-        "id": 8,
-        "name": "Memória Cache",
-        "cards": [
-          {
-            "id": 1,
-            "question": "",
-            "answer": "",
-            "requiresImage": false
-          }
-        ]
-      },
-      {
-        "id": 9,
-        "name": "Entrada e Saída",
-        "cards": [
-          {
-            "id": 1,
-            "question": "",
-            "answer": "",
-            "requiresImage": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Unidade 3",
-    "decks": [
-      {
-        "id": 10,
-        "name": "Barramentos",
-        "cards": [
-          {
-            "id": 1,
-            "question": "",
-            "answer": "",
-            "requiresImage": false
-          }
-        ]
-      },
-      {
-        "id": 11,
-        "name": "Medidas de desempenho e técnicas de Avaliação",
-        "cards": [
-          {
-            "id": 1,
-            "question": "",
-            "answer": "",
-            "requiresImage": false
-          }
-        ]
-      },
-      {
-        "id": 12,
-        "name": "Computação de Alto Desempenho",
-        "cards": [
-          {
-            "id": 1,
-            "question": "",
-            "answer": "",
-            "requiresImage": false
-          }
-        ]
+        "cards": []
       }
     ]
   }

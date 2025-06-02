@@ -54,4 +54,22 @@ schRouter.delete("/:key/studentCardHistory/dropTable", async (req, res) =>
     .catch((e) => res.status(400).send(e))
 );
 
+schRouter.post("/:key/studentCardHistory/insertByCard", async (req, res) => {
+  try {
+    const students = await pool.query(reqs.student.get(req.params.key));
+    students.rows.map((student) =>
+      pool.query(
+        reqs.studentCardHistory.insert(
+          req.params.key,
+          req.body.cards,
+          student.code
+        )
+      )
+    );
+    res.sendStatus(200);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 module.exports = schRouter;
