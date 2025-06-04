@@ -61,7 +61,6 @@ studyRouter.get("/:key/study/:studentCode/:deckId", (req, res) => {
             meter: studyRecord.length - 1,
             interval: lastRecord.interval,
             nextStudyDate: lastRecord.next_study_date,
-            requiresImage: card.requiresimage,
             question: card.question,
             answer: card.answer,
           };

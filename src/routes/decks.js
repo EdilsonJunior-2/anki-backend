@@ -33,14 +33,7 @@ deckRouter.delete("/:key/deck/dropTable", async (req, res) =>
 
 deckRouter.post("/:key/deck/insert", async (req, res) =>
   pool
-    .query(
-      reqs.deck.insert(
-        req.params.key,
-        req.body.deck,
-        req.body.chapter,
-        req.body.image
-      )
-    )
+    .query(reqs.deck.insert(req.params.key, req.body.deck, req.body.chapter))
     .then(() => res.sendStatus(200))
     .catch((e) => res.status(400).send(e))
 );

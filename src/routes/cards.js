@@ -35,14 +35,9 @@ cardRouter.post("/:key/card/insert", async (req, res) =>
   pool
     .query(reqs.card.insert(req.params.key, req.body.deck, req.body.cards))
     .then(() => res.sendStatus(200))
-    .catch((e) => res.status(400).send(e))
-);
-
-cardRouter.post("/:key/card/i", async (req, res) =>
-  pool
-    .query(reqs.card.insert(req.params.key, req.body.deck, req.body.cards))
-    .then(() => res.sendStatus(200))
-    .catch((e) => res.status(400).send(e))
+    .catch((e) => {
+      res.status(400).send(e);
+    })
 );
 
 module.exports = cardRouter;

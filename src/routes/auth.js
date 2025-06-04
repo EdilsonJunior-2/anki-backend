@@ -22,10 +22,10 @@ authRouter.post("/:key/login", (req, res) => {
           user: user,
           token: token,
         });
-      } else res.status(400).send(r);
+      } else res.status(400).send({ message: "Usuário inválido" });
     })
     .catch((err) => {
-      res.status(400).send(err);
+      res.status(400).send({ message: "Usuário inválido" });
     });
 });
 

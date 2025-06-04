@@ -7,176 +7,292 @@
         "cards": [
           {
             "question": "Qual a lógica de peso de um dígito binário?",
-            "answer": "O peso de cada dígito é relativo à sua posição tendo o LSB (Least Significant Bit) como referência: O LSB possui peso 0, e os dígitos à esquerda possuem o peso incrementado em 1 a cada posição mais à esquerda.",
-            "requiresImage": false
+            "answer": "O peso de cada dígito é relativo à sua posição tendo o LSB (Least Significant Bit) como referência: O LSB possui peso 0, e os dígitos à esquerda possuem o peso incrementado em 1 a cada posição mais à esquerda."
           },
           {
             "question": "Converta o binário 100011011011 em seu equivalente decimal e hexadecimal.",
-            "answer": "Decimal: 2267. Hexadecimal: 8DB",
-            "requiresImage": false
+            "answer": "Decimal: 2267. Hexadecimal: 8DB"
           },
           {
             "question": "Quantos bits são necessários para representar valores decimais na faixa de 0 a 35.400?",
-            "answer": "16 bits. (2^15) - 1 = 32767, (2^16) - 1 = 63555.",
-            "requiresImage": false
+            "answer": "16 bits. (2^15) - 1 = 32767, (2^16) - 1 = 63555."
           },
           {
             "question": "Converta o decimal 934 em binário.",
-            "answer": "1110100110",
-            "requiresImage": false
+            "answer": "1110100110"
           },
           {
             "question": "Qual é a faixa total de valores decimais que podemos representar com 8 bits?",
-            "answer": "Nesse caso, temos N = 8. Assim, podemos representar os números decimais na faixa de 0 a (2^8) - 1 = 255. Podemos comprovar isso verificando que 11111111, convertido em decimal, vale 255",
-            "requiresImage": false
+            "answer": "Nesse caso, temos N = 8. Assim, podemos representar os números decimais na faixa de 0 a (2^8) - 1 = 255. Podemos comprovar isso verificando que 11111111, convertido em decimal, vale 255"
           },
           {
             "question": " Escreva os próximos quatro números da seguinte contagem hexa: E9A, E9B, E9C, E9D, ___, ___, ___, ___.",
-            "answer": "E9E, E9F, EA0, EA1",
-            "requiresImage": false
+            "answer": "E9E, E9F, EA0, EA1"
           },
           {
             "question": "Converta 8B69 em decimal e em binário.",
-            "answer": "Decimal: 35689. Binário: 1000101101101001",
-            "requiresImage": false
+            "answer": "Decimal: 35689. Binário: 1000101101101001"
           },
           {
             "question": "Que faixa de valores decimais pode ser representada por números hexa de quatro dígitos?",
-            "answer": "A faixa correspondente é de 1000 a FFFF. Esses valores hexadecimais correspondem aos números decimais entre 4096 e 65535",
-            "requiresImage": false
+            "answer": "A faixa correspondente é de 1000 a FFFF. Esses valores hexadecimais correspondem aos números decimais entre 4096 e 65535"
           },
           {
             "question": " Represente o valor decimal 5302 no equivalente binário puro. Em seguida, codifique o mesmo número decimal usando BCD",
-            "answer": "Binário: 1010010110110. BCD: 0101001100000010",
-            "requiresImage": false
+            "answer": "Binário: 1010010110110. BCD: 0101001100000010"
           },
           {
             "question": "Qual é a vantagem da codificação em BCD de um número decimal quando comparada com o binário puro? E qual é a desvantagem?",
-            "answer": "A principal vantagem do código BCD é a relativa facilidade de conversão em decimal e vice-versa. Apenas os grupos de 4 bits dos dígitos de 0 a 9 precisam ser memorizados. No entanto, o BCD geralmente requer mais bits do que o binário puro, o que demanda um maior espaço de armazenamento, além do fato de que, como ele é projetado apenas para dígitos decimais (0-9, ou 0000-1001), os 6 valores restantes que podem ser representado por 4 bits (10-15, ou 1010-1111), são disperdiçados.",
-            "requiresImage": false
+            "answer": "A principal vantagem do código BCD é a relativa facilidade de conversão em decimal e vice-versa. Apenas os grupos de 4 bits dos dígitos de 0 a 9 precisam ser memorizados. No entanto, o BCD geralmente requer mais bits do que o binário puro, o que demanda um maior espaço de armazenamento, além do fato de que, como ele é projetado apenas para dígitos decimais (0-9, ou 0000-1001), os 6 valores restantes que podem ser representado por 4 bits (10-15, ou 1010-1111), são disperdiçados."
           },
           {
             "question": "Quantos bytes são necessários para representar o decimal 23510 em binário?",
-            "answer": "Representação binária: 101101111010110. 15 bits, 2 bytes.",
-            "requiresImage": false
+            "answer": "Representação binária: 101101111010110. 15 bits, 2 bytes."
           },
           {
             "question": "Qual é o maior valor decimal que pode ser representado em BCD, usando dois bytes?",
-            "answer": "2 bytes representam 16 bits. Como cada dígito em BCD é representado por 4 bits, o maior valor decimal é 9999 (1001 1001 1001 1001)",
-            "requiresImage": false
+            "answer": "2 bytes representam 16 bits. Como cada dígito em BCD é representado por 4 bits, o maior valor decimal é 9999 (1001 1001 1001 1001)"
           },
           {
             "question": "Quantos dígitos hexadecimais um nibble pode representar?",
-            "answer": "Um nibble possui o tamanho de 4 bits, sendo o maior valor possível de ser representado por ele é 1111 (binário), ou F (hexadecimal). Logo, apenas um dígito hexadecimal pode ser representado por um nibble.",
-            "requiresImage": false
+            "answer": "Um nibble possui o tamanho de 4 bits, sendo o maior valor possível de ser representado por ele é 1111 (binário), ou F (hexadecimal). Logo, apenas um dígito hexadecimal pode ser representado por um nibble."
           },
           {
             "question": "Codifique, em ASCII, a seguinte mensagem, usando a representação hexa: ‘COST = $449’.",
-            "answer": "01000011 01001111 01010011 01010100 00100000 00111101 00100000 00100100 00110100 00110100 00111001",
-            "requiresImage": false
+            "answer": "01000011 01001111 01010011 01010100 00100000 00111101 00100000 00100100 00110100 00110100 00111001"
           },
           {
             "question": "Converta a mensagem codificada a seguir: 01010010 01001111 01000100 01001111 01001100 01000110 01001111",
-            "answer": "RODOLFO",
-            "requiresImage": false
+            "answer": "RODOLFO"
           },
           {
             "question": "Converta o decimal 255 em binário",
-            "answer": "11111111",
-            "requiresImage": false
+            "answer": "11111111"
           },
           {
             "question": "Converta o binário 1110101000100111 em decimal",
-            "answer": "59943",
-            "requiresImage": false
+            "answer": "59943"
           },
           {
             "question": "Converta o decimal 465 em hexadecimal",
-            "answer": "1D1",
-            "requiresImage": false
+            "answer": "1D1"
           },
           {
             "question": "Converta o hexadecimal 465 em binário",
-            "answer": "11001000000",
-            "requiresImage": false
+            "answer": "11001000000"
           },
           {
             "question": "Converta o decimal 1600 em binário",
-            "answer": "11001000000",
-            "requiresImage": false
+            "answer": "11001000000"
           },
           {
             "question": "Converta o decimal 1600 em BCD",
-            "answer": "0001011000000000",
-            "requiresImage": false
+            "answer": "0001011000000000"
           },
           {
             "question": "Converta o decimal 1600 em hexadecimal",
-            "answer": "640",
-            "requiresImage": false
+            "answer": "640"
           },
           {
             "question": "Converta o hexadecimal 1600 em binário",
-            "answer": "1011000000000",
-            "requiresImage": false
+            "answer": "1011000000000"
           },
           {
             "question": "Represente o valor decimal 37 em binário, BCD, hexadecimal e ASCII (considere cada dígito um caractere).",
-            "answer": "Binário: 100101. BCD: 00110111. Hexadecimal: 25. ASCII: 33 37",
-            "requiresImage": false
+            "answer": "Binário: 100101. BCD: 00110111. Hexadecimal: 25. ASCII: 33 37"
           },
           {
             "question": "Em um CD de áudio, o sinal de tensão de áudio é amostrado cerca de 44.000 vezes por segundo, e o valor de cada amostra é gravado na superfície do CD como um número binário. Em outras palavras, cada número binário gravado representa um único ponto da forma de onda do sinal de áudio. Se forem usados 10 bits, quantos bits serão gravados no CD em 1 segundo?",
-            "answer": "440.000 bits",
-            "requiresImage": false
+            "answer": "440.000 bits"
           },
           {
             "question": "Qual o maior valor decimal que pode ser representado por um número binário de 13 bits?",
-            "answer": "8191",
-            "requiresImage": false
+            "answer": "8191"
           },
           {
             "question": " Qual é o maior valor que pode ser representado por três dígitos hexa?",
-            "answer": "4095",
-            "requiresImage": false
+            "answer": "4095"
           },
           {
             "question": "Quantos dígitos hexadecimais são necessários para representar os números decimais até 1 milhão? E até 4 milhões?",
-            "answer": "1 milhão: 5 dígitos (1000000 = F4240). 4 milhões: 6 dígitos (4000000 = 3D0900)",
-            "requiresImage": false
+            "answer": "1 milhão: 5 dígitos (1000000 = F4240). 4 milhões: 6 dígitos (4000000 = 3D0900)"
           },
           {
             "question": "Converta o BCD 1001011101010010 em decimal",
-            "answer": "9752",
-            "requiresImage": false
+            "answer": "9752"
           },
           {
             "question": "Converta o binário 011101010111011101110101 em ASCII",
-            "answer": "uwu",
-            "requiresImage": false
+            "answer": "uwu"
           },
 
           {
             "question": "Qual é o nibble mais significativo do código ASCII para a letra X?",
-            "answer": "0101",
-            "requiresImage": false
+            "answer": "0101"
           }
         ]
       },
       {
-        "id": 1,
-        "name": "Descrição de circuitos lógicos (Parte 1)",
-        "cards": []
-      },
-      {
-        "id": 2,
-        "name": "Descrição de circuitos lógicos (Parte 2)",
-        "cards": []
-      },
-      {
-        "id": 3,
-        "name": "MIPS e modos de endereçamento",
-        "cards": []
+        "name": "Descrição de circuitos lógicos",
+        "cards": [
+          {
+            "question": "<p>Desenhe a forma de onda de saída para a porta OR da figura abaixo:</p><img src=\"/images/questions/2-1.jpg' alt=\"question-image\" />",
+            "answer": "<img src=\"/images/answers/32_answer.jpg\" alt=\"answer-image\" />"
+          },
+          {
+            "id": 33,
+            "question": "<p> Suponha que a entrada A na figura seja, não intencionalmente, curto-circuitada para a linha de alimentação +5 V (isto é, A = 1). Desenhe a forma de onda de saída resultante.</p><img src=\"/images/questions/2-1.jpg\" alt=\"question-image\" />",
+            "answer": "<p> X ficará em um nível alto constante</p>"
+          },
+          {
+            "question": "<p>Troque a porta OR na figura por uma porta AND. Desenhe a forma de onda da saída em condições normais e caso a entrada A for permanentemente curto-circuitada para o terra.</p><img src=\"/images/questions/2-2.jpg\" alt=\"question-image\" />",
+            "answer": " <p>Condição inicial: X ficará em um nível ALTO apenas quando A, B e C estiverem todas em nivel ALTO</p><p>A em terra: X ficará sempre em nível baixo</p>"
+          },
+          {
+            "question": " <p>Modifique o circuito de modo que o alarme seja ativado apenas quando a pressão e a temperatura excederem, ao mesmo tempo, seus valores-limite.</p><img src=\"/images/questions/2-3.jpg\" alt=\"question-image\" />",
+            "answer": "Substituir a porta OR por uma porta AND"
+          },
+          {
+            "question": "<p>Escreva a expressão booleana para a saída X</p><img src=\"/images/questions/2-4.jpg\" alt=\"question-image\" />",
+            "answer": "X = ~(~A + ~B)BC. X fica em nível ALTO apenas quando ABC = 111"
+          },
+          {
+            "question": "<p>Troque cada OR por AND e cada AND por OR no circuito abaixo. Em seguida, escreva a expressão para a saída.</p><img src=\"/images/questions/2-5.jpg\" alt=\"question-image\" />",
+            "answer": "X = D · ~(AB + C ) + E."
+          },
+          {
+            "question": "<p>Desenhe o circuito lógico correspondente à expressão X = ~(AB(C + D)) (use portas AND, OR e inversores)</p>",
+            "answer": "<img src=\"/images/answers/38_answer.jpg\" alt=\"question-image\" />"
+          },
+          {
+            "question": "<p>Desenhe o circuito lógico correspondente à expressão Z = ~(A + B + (~C)D(~E)) + (~B)C(~D) (use portas AND, OR e inversores)</p>",
+            "answer": "<img src=\"/images/answers/39_answer.jpg\" alt=\"question-image\" />"
+          },
+          {
+            "question": "<p>Aplique as formas de onda de entrada da figura em uma porta NOR e desenhe a forma de onda de saída (a) normal (b) entrada C mantida permanentemente em nível BAIXO (c) entrada C mantida permanentemente em nível ALTO</p><img src=\"/images/questions/2-6.jpg\" alt=\"question-image\" />",
+            "answer": "<img src=\"/images/answers/40_answer.jpg\" alt=\"question-image\" />"
+          },
+          {
+            "question": "<p>Escreva a expressão para a saída do circuito abaixo e use-a para determinar a tabela-verdade completa. Em seguida, aplique as formas de onda mostradas às entradas do circuito e desenhe a forma de onda de saída resultante.</p><img src=\"/images/questions/2-7.jpg\" alt=\"question-image-1\" /><img src=\"/images/questions/2-6.jpg\" alt=\"question-image-2\" />",
+            "answer": "X = ~(~(A + B) · ~(B + (~C))). X = 0 apenas quando A = B = 0, C = 1"
+          },
+          {
+            "question": "Em que uma porta XOR difere de uma porta OR na sua operação lógica?",
+            "answer": "EX-OR = A(~B) + (~A)B; OR = A + B"
+          },
+          {
+            "question": "<p>Para o conjunto de formas de onda de entrada vistas na figura, determine a saída para uma porta NAND e desenhe o diagrama de temporização.</p><img src=\"/images/questions/2-8.jpg\" alt=\"question-image-1\" />",
+            "answer": "<img src=\"/images/answers/43_answer.jpg\" alt=\"question-image\" />"
+          },
+          {
+            "question": "<p>Determine a forma de onda de saída para uma porta NAND e as formas de onda mostradas na figura abaixo.</p><img src=\"/images/questions/2-9.jpg\" alt=\"question-image-1\" />",
+            "answer": "<img src=\"/images/answers/44_answer.jpg\" alt=\"question-image\" />"
+          },
+          {
+            "question": "<p>Para o conjunto de formas de onda de entrada vistas na figura, determine a saída para uma porta NOR de duas entradas e desenhe o diagrama de temporização.</p><img src=\"/images/questions/2-8.jpg\" alt=\"question-image-1\" />",
+            "answer": "<img src=\"/images/answers/45_answer.jpg\" alt=\"question-image\" />"
+          },
+          {
+            "question": "<p>Determine a forma de onda de saída para uma porta NOR e as formas de onda mostradas na figura abaixo.</p><img src=\"/images/questions/2-9.jpg\" alt=\"question-image-1\" />",
+            "answer": "<img src=\"/images/answers/46_answer.jpg\" alt=\"question-image\" />"
+          },
+          {
+            "question": "<p>Para o conjunto de formas de onda de entrada vistas na figura, determine a saída para uma porta XNOR e desenhe o diagrama de temporização.</p><img src=\"/images/questions/2-8.jpg\" alt=\"question-image-1\" />",
+            "answer": "<img src=\"/images/answers/47_answer.jpg\" alt=\"question-image\" />"
+          },
+          {
+            "question": "<p>Determine a saída de uma porta OR de 2 entradas quando as formas de onda de entrada forem as da figura abaixo e desenhe um diagrama de temporização.</p><img src=\"/images/questions/2-10.jpg\" alt=\"question-image-1\" />",
+            "answer": "<img src=\"/images/answers/48_answer.jpg\" alt=\"question-image\" />"
+          },
+          {
+            "question": "<p>As formas de onda de entrada de uma porta OR de 4 entradas são vistas na figura abaixo. Mostre a forma de onda de saída relacionando-a adequadamente às entradas usando um diagrama de temporização.</p><img src=\"/images/questions/2-11.jpg\" alt=\"question-image-1\" />",
+            "answer": "<img src=\"/images/answers/49_answer.jpg\" alt=\"question-image\" />"
+          },
+          {
+            "question": "",
+            "answer": ""
+          },
+          {
+            "question": "",
+            "answer": ""
+          },
+          {
+            "question": "",
+            "answer": ""
+          },
+          {
+            "question": "",
+            "answer": ""
+          },
+          {
+            "question": "",
+            "answer": ""
+          },
+          {
+            "question": "",
+            "answer": ""
+          },
+          {
+            "question": "",
+            "answer": ""
+          },
+          {
+            "question": "",
+            "answer": ""
+          },
+          {
+            "question": "",
+            "answer": ""
+          },
+          {
+            "question": "",
+            "answer": ""
+          },
+          {
+            "question": "",
+            "answer": ""
+          },
+          {
+            "question": "",
+            "answer": ""
+          },
+          {
+            "question": "",
+            "answer": ""
+          },
+          {
+            "question": "",
+            "answer": ""
+          },
+          {
+            "question": "Complete a expressão: A + 1 = ___",
+            "answer": "1"
+          },
+          {
+            "question": "Complete a expressão: A · A = ___",
+            "answer": "A"
+          },
+          {
+            "question": "Complete a expressão: B · ~B = ___",
+            "answer": "0"
+          },
+          {
+            "question": "Complete a expressão: C + C = ___",
+            "answer": "C"
+          },
+          {
+            "question": "Complete a expressão: X · 0 = ___",
+            "answer": "0"
+          },
+          {
+            "question": "Complete a expressão: D · 1 = ___",
+            "answer": "D"
+          },
+          {
+            "question": "Complete a expressão: D + 0 = ___",
+            "answer": ""
+          }
+        ]
       }
     ]
   }

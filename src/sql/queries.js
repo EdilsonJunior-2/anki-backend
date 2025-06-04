@@ -45,24 +45,24 @@ const chapter = {
 
 const deck = {
   createTable: (key) =>
-    `CREATE TABLE ${key}_decks (id SERIAL PRIMARY KEY, name TEXT, image VARCHAR(20), chapter INT, FOREIGN KEY (chapter) REFERENCES ${key}_chapters(id));`,
+    `CREATE TABLE ${key}_decks (id SERIAL PRIMARY KEY, name TEXT, chapter INT, FOREIGN KEY (chapter) REFERENCES ${key}_chapters(id));`,
   get: (key, rules) =>
     `SELECT * FROM ${key}_decks${rules ? ` WHERE ${rules.join("AND ")}` : ""};`,
   getCount: (key) => `SELECT COUNT(*) FROM ${key}_decks`,
-  insert: (key, name, chapter, image) =>
-    `INSERT INTO ${key}_decks (name, chapter, image) VALUES ('${name}', ${chapter}, '${image}')`,
+  insert: (key, name, chapter) =>
+    `INSERT INTO ${key}_decks (name, chapter) VALUES ('${name}', ${chapter})`,
   clearTable: (key) => `DELETE FORM ${key}_decks;`,
   dropTable: (key) => `DROP TABLE ${key}_decks CASCADE;`,
 };
 
 const card = {
   createTable: (key) =>
-    `CREATE TABLE ${key}_cards (id SERIAL PRIMARY KEY, question TEXT, answer TEXT, requiresImage BOOLEAN, deck INT, FOREIGN KEY (deck) REFERENCES ${key}_decks(id));`,
+    `CREATE TABLE ${key}_cards (id SERIAL PRIMARY KEY, question TEXT, answer TEXT, deck INT, FOREIGN KEY (deck) REFERENCES ${key}_decks(id));`,
   get: (key) => `SELECT * FROM ${key}_cards card ORDER BY card.deck;`,
   insert: (key, deck, cards) => `
-  INSERT INTO ${key}_cards (deck, question, answer, requiresImage) VALUES ${cards
+  INSERT INTO ${key}_cards (deck, question, answer) VALUES ${cards
     .map((card) => {
-      return `(${deck}, '${card.question}', '${card.answer}', ${card.requiresImage})`;
+      return `(${deck}, '${card.question}', '${card.answer}')`;
     })
     .join(", ")};
   `,
@@ -102,8 +102,7 @@ const studentCardHistory = {
     d.name as deck,
     sch.record AS record,
     c.question AS question,
-    c.answer AS answer,
-    c.requiresimage AS requiresimage
+    c.answer AS answer
     FROM ${key}_student_card_history sch
     JOIN ${key}_cards c ON sch.card = c.id
     JOIN ${key}_students s ON sch.student = s.code
